@@ -9,9 +9,20 @@ public class JedisPoolDemo {
         // 初始化Jedis连接池，通常来讲JedisPool是单例的。
         GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
         JedisPool jedisPool = new JedisPool(poolConfig, "192.168.177.129", 6382);
-        Jedis jedis = jedisPool.getResource();
-        String pong = jedis.ping();
-        // 返回结果：PONG
-        System.out.println(pong);
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            String pong = jedis.ping();
+            // 返回结果：PONG
+            System.out.println(pong);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (jedis != null) {
+                // 归还连接池
+                jedis.close();
+            }
+        }
+
     }
 }
