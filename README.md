@@ -23,3 +23,7 @@
 6. 使用Jedis连接池
     
     [JedisPoolDemo.java](src/main/java/com/sakura/basic/pool/JedisPoolDemo.java)
+    
+7. 使用pipeline操作redis
+
+    [PiplineDemo.java](src/main/java/com/sakura/other/pipline/PiplineDemo.java)
